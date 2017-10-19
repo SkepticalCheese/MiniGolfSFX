@@ -1,0 +1,4 @@
+/node_modules/
+/mp3/
+*.log
+app.js.bak

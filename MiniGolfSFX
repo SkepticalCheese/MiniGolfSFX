@@ -1,0 +1,19 @@
+#!/bin/sh
+#/etc/init.d/MiniGolfSFX
+export PATH=$PATH:/home/chip/MiniGolfSFX
+export NODE_PATH=$NODE_PATH:/home/chip/MiniGolfSFX/node_modules
+
+case "$1" in
+start)
+exec forever start -a -l MiniGolfSFX.log --sourceDir=/home/chip/MiniGolfSFX -p /home/chip/MiniGolfSFX app.js
+;;
+stop)
+exec forever stop --sourceDir=/home/chip/MiniGolfSFX app.js
+;;
+*)
+echo "Usage: /etc/init.d/myService {start|stop}"
+exit 1
+;;
+esac
+exit 0
+
