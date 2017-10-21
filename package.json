@@ -6,12 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkepticalCheese/MiniGolfSFX.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SkepticalCheese/MiniGolfSFX/issues"
+  },
+  "homepage": "https://github.com/SkepticalCheese/MiniGolfSFX#readme",
   "dependencies": {
     "child_process": "^1.0.2",
     "chip-io": "^2.1.1",
+    "fs": "0.0.1-security",
     "johnny-five": "^0.11.6",
-    "player": "^0.6.1",
+    "lame": "^1.2.4",
+    "speaker": "^0.4.0"
   }
 }
