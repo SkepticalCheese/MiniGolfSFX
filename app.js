@@ -10,13 +10,13 @@
 	sudo apt-get install libasound2-dev
 */
 
-var fs = require('fs')
+const fs = require('fs')
 , lame = require('lame')
 , Speaker = require('speaker');
 
-var stream = fs.createReadStream('mp3/O-canada2.mp3')
-, decoder = new lame.Decoder()
-, speaker = new Speaker();
+const exec = require('child_process').exec;
+const five = require('johnny-five');
+const chipio = require('chip-io');
 
 var playing = false;
 
@@ -38,30 +38,36 @@ var board = new five.Board({
 io: new chipio()
 });
 
+// When board is ready...
 board.on('ready', function() {
-// Creates buttons on the XIO-P1 and P3 pins
-var buttonShutDown = new five.Button('XIO-P1');
-var buttonSensor   = new five.Button('XIO-P3');
 
-// adds event listeners on the GPIO's
-buttonShutDown.on('press', function() {
-  console.log('Shutdown button pressed');
-  execute('sudo shutdown -h now', function(callback){
-    console.log('shutting down...');
+  // Creates buttons and adds event listeners on the XIO-P1 and P3 pins
+  var buttonShutDown = new five.Button('XIO-P1');
+
+  buttonShutDown.on('press', function() {
+    console.log('Shutdown button pressed');
+    execute('sudo shutdown -h now', function(callback){
+      console.log('shutting down...');
+    });
   });
-});
 
-buttonSensor.on('release', function() {
-  console.log('Sensor tripped!');
-  // play MP3
-  if (!playing) {
-    playing = true;
-    console.log('Playing...');
-      stream.pipe(decoder).pipe(speaker).on('finish', () => {
-          console.log('Finish.');
-          playing = false;
-        });
-     }
+  var buttonSensor   = new five.Button('XIO-P3');
+  buttonSensor.on('release', function() {
+    var decoder = new lame.Decoder()
+      , speaker = new Speaker();
+
+    console.log('Sensor tripped!');
+    // play MP3
+    if (!playing) {
+      playing = true;
+      console.log('Playing...');
+      fs.createReadStream('mp3/O-canada2.mp3')
+        .pipe(decoder).pipe(speaker)
+        .on('finish', () => {
+            console.log('Finish.');
+            playing = false;
+      });
+    };
   });
 });
 
