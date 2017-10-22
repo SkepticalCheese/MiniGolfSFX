@@ -20,6 +20,17 @@ const chipio = require('chip-io');
 
 var playing = false;
 
+// Scans mp3 folder, loads track names into array
+var tracks = [];
+var nextTrack = 0;
+var files = fs.readdirSync('./mp3/');
+
+console.log ('files: ', files);
+files.forEach(file => {
+  if (file.search('.mp3') > 0)  tracks.push(file);
+});
+console.log ('tracks: ', tracks);
+
 /*
 decoder.on('format', function() {
 mpg123Util.setVolume(decoder.mh, 0.5);
@@ -43,8 +54,8 @@ board.on('ready', function() {
 
   // Creates buttons and adds event listeners on the XIO-P1 and P3 pins
   var buttonShutDown = new five.Button('XIO-P1');
-
-  buttonShutDown.on('press', function() {
+  
+    buttonShutDown.on('press', function() {
     console.log('Shutdown button pressed');
     execute('sudo shutdown -h now', function(callback){
       console.log('shutting down...');
@@ -57,17 +68,22 @@ board.on('ready', function() {
       , speaker = new Speaker();
 
     console.log('Sensor tripped!');
+
     // play MP3
     if (!playing) {
       playing = true;
-      console.log('Playing...');
-      fs.createReadStream('mp3/O-canada2.mp3')
+      console.log('Playing...', tracks[nextTrack]);
+
+      fs.createReadStream('mp3/' + tracks[nextTrack])
         .pipe(decoder).pipe(speaker)
         .on('finish', () => {
             console.log('Finish.');
             playing = false;
       });
-    };
+
+      nextTrack++;
+      if (nextTrack >= length(tracks))
+        nextTrack = 0;    };
   });
 });
 
