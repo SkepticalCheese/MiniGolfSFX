@@ -95,9 +95,12 @@ as root:
 cp MiniGolfSFX /etc/init.d 
 chmod 755 /etc/init.d/MiniGolfSFX 
 sh /etc/init.d/MiniGolfSFX start
-# sh /etc/init.d/MiniGolfSFXstop
 update-rc.d MiniGolfSFX defaults
-# update-rc.d -f MiniGolfSFX remove
 cp MiniGolfSFX /etc/logrotate.d/
+
+rm  /etc/logrotate.d/MiniGolfSFX
+update-rc.d -f MiniGolfSFX remove
+sh /etc/init.d/MiniGolfSFX stop
+rm /etc/init.d/MiniGolfSFX
 
 ***/
