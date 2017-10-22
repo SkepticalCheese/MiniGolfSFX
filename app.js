@@ -82,8 +82,9 @@ board.on('ready', function() {
       });
 
       nextTrack++;
-      if (nextTrack >= length(tracks))
-        nextTrack = 0;    };
+      if (nextTrack >= tracks.length)
+        nextTrack = 0;    
+    };
   });
 });
 
