@@ -88,19 +88,3 @@ board.on('ready', function() {
   });
 });
 
-/***
-Commands to setup forever on boot and rotate log
-as root:
-
-cp MiniGolfSFX /etc/init.d 
-chmod 755 /etc/init.d/MiniGolfSFX 
-sh /etc/init.d/MiniGolfSFX start
-update-rc.d MiniGolfSFX defaults
-cp MiniGolfSFX /etc/logrotate.d/
-
-rm  /etc/logrotate.d/MiniGolfSFX
-update-rc.d -f MiniGolfSFX remove
-sh /etc/init.d/MiniGolfSFX stop
-rm /etc/init.d/MiniGolfSFX
-
-***/
