@@ -1,4 +1,4 @@
-/home/chip/ircontrolMQTT/ircontrolMQTT.log {
+/home/chip/MiniGolfSFX/MiniGolfSFX.log {
   daily         # how often to rotate
   size=100k     # maz size
   rotate 3      # max num of log files to keep
