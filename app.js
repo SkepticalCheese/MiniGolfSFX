@@ -90,13 +90,14 @@ board.on('ready', function() {
 
 /***
 Commands to setup forever on boot and rotate log
-  as root:
-  copy MiniGolfSFX to /etc/init.d 
-chmod 755 /etc/init.d/MiniGolfSFX 
-sh /etc/init.d/MiniGolfSFX start/stop
-update-rc.d MiniGolfSFX defaults
-update-rc.d -f MiniGolfSFX remove
+as root:
 
-Copy MiniGolfSFX to /etc/logrotate.d/
+cp MiniGolfSFX /etc/init.d 
+chmod 755 /etc/init.d/MiniGolfSFX 
+sh /etc/init.d/MiniGolfSFX start
+# sh /etc/init.d/MiniGolfSFXstop
+update-rc.d MiniGolfSFX defaults
+# update-rc.d -f MiniGolfSFX remove
+cp MiniGolfSFX /etc/logrotate.d/
 
 ***/
