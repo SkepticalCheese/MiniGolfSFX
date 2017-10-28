@@ -62,7 +62,7 @@ board.on('ready', function() {
     });
   });
 
-  var buttonSensor   = new five.Button('XIO-P3');
+  var buttonSensor   = new five.Button('CSID1');
   buttonSensor.on('release', function() {
     var decoder = new lame.Decoder()
       , speaker = new Speaker();
