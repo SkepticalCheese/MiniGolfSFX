@@ -25,7 +25,15 @@ If last step fails, make sure you have the ALSA backend installed by running:
 sudo apt-get install libasound2-dev
 ```
 
+## Installing required node modules
+Running the app:
+```
+sudo node app.js
+```
+
 ## Setting up forever on boot and rotate log
+[Install forever](https://github.com/foreverjs/forever)
+
 As root:
 ```
 cp ./init/MiniGolfSFX /etc/init.d  
