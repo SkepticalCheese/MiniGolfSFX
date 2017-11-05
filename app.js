@@ -63,7 +63,7 @@ board.on('ready', function() {
   });
 
   var buttonSensor   = new five.Button('CSID1');
-  buttonSensor.on('release', function() {
+  buttonSensor.on('press', function() {
     var decoder = new lame.Decoder()
       , speaker = new Speaker();
 
@@ -86,5 +86,10 @@ board.on('ready', function() {
         nextTrack = 0;    
     };
   });
+
+  buttonSensor.on('release', function() {
+    console.log('Sensor reset!');
+  });
+
 });
 
