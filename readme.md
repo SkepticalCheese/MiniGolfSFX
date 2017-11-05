@@ -13,11 +13,11 @@ Node application to play MP3 files every time a sensor is tripped. Used on a min
 
 ## Installing required node modules
 ```
-npm init<br/>
-npm install -save chip-io johnny-five<br/>
-npm install -save child_process<br/>
-npm install -save fs<br/>
-npm install -save lame<br/>
+npm init  
+npm install -save chip-io johnny-five  
+npm install -save child_process  
+npm install -save fs  
+npm install -save lame  
 npm install -save speaker
 ```  
 If last step fails, make sure you have the ALSA backend installed by running:
@@ -28,16 +28,16 @@ sudo apt-get install libasound2-dev
 ## Setting up forever on boot and rotate log
 As root:
 ```
-cp ./init/MiniGolfSFX /etc/init.d<br/>
-chmod 755 /etc/init.d/MiniGolfSFX<br/>
-sh /etc/init.d/MiniGolfSFX start<br/>
-update-rc.d MiniGolfSFX defaults<br/>
-cp ./logrotate/MiniGolfSFX /etc/logrotate.d/<br/>
+cp ./init/MiniGolfSFX /etc/init.d  
+chmod 755 /etc/init.d/MiniGolfSFX  
+sh /etc/init.d/MiniGolfSFX start  
+update-rc.d MiniGolfSFX defaults  
+cp ./logrotate/MiniGolfSFX /etc/logrotate.d/  
 ```
 Reverting the above
 ```
-rm  /etc/logrotate.d/MiniGolfSFX<br/>
-update-rc.d -f MiniGolfSFX remove<br/>
-sh /etc/init.d/MiniGolfSFX stop<br/>
-rm /etc/init.d/MiniGolfSFX<br/>
+rm  /etc/logrotate.d/MiniGolfSFX  
+update-rc.d -f MiniGolfSFX remove  
+sh /etc/init.d/MiniGolfSFX stop  
+rm /etc/init.d/MiniGolfSFX  
 ```
