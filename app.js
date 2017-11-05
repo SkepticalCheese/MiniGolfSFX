@@ -1,15 +1,3 @@
-/* Installing required node modules
-	npm init
-	npm install -save chip-io johnny-five
-	npm install -save child_process
-  npm install -save fs
-  npm install -save lame
-  npm install -save speaker
-  
-	If last step fails, make sure you have the ALSA backend installed by running:
-	sudo apt-get install libasound2-dev
-*/
-
 const fs = require('fs')
 , lame = require('lame')
 , Speaker = require('speaker');
@@ -92,4 +80,3 @@ board.on('ready', function() {
   });
 
 });
-
